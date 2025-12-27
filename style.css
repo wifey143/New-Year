@@ -140,3 +140,11 @@ body {
     transform: translateY(110vh);
   }
 }
+/* ❌ ERROR MESSAGE */
+#error-msg {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #ff4d6d;
+  text-align: left;
+  min-height: 18px;
+}
