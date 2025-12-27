@@ -3,7 +3,7 @@ function checkLogin() {
   const errorMsg = document.getElementById("error-msg");
 
   if (pass === "Love You Bandar") {
-    window.location.href = "lounge.html";
+    window.location.href = "page1.html";
   } else {
     errorMsg.textContent = "Wrong password 💔 Try again";
   }
