@@ -1,10 +1,11 @@
 function checkLogin() {
-  const pass = document.getElementById("pass").value;
+  const pass = document.getElementById("pass").value.trim();
+  const errorMsg = document.getElementById("error-msg");
 
   if (pass === "Love You Bandar") {
     window.location.href = "lounge.html";
   } else {
-    alert("Wrong password 💔");
+    errorMsg.textContent = "Wrong password 💔 Try again";
   }
 }
 // ❄️ SNOW EFFECT (ALL PAGES)
