@@ -6,7 +6,7 @@
 
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(135deg, #ffe6f0, #fbeaff);
   display: flex;
   justify-content: center;
@@ -14,46 +14,54 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+/* MAIN CONTAINER */
 .page {
-  width: 90%;
-  max-width: 900px;
-  height: 85%;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 25px;
+  width: 95vw;
+  height: 95vh;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
   text-align: center;
-  padding: 50px 20px;
+  padding: 6vh 5vw;
   box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* TITLE */
 .page h1 {
-  font-size: 30px;
+  font-size: clamp(24px, 4vw, 40px);
   color: #444;
-  margin-bottom: 40px;
+  margin-bottom: 6vh;
 }
 
+/* LOGIN CARD */
 .login-box {
-  width: 320px;
+  width: min(90%, 420px);
   background: #fff;
-  margin: auto;
+  margin: 0 auto;
   padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  border-radius: 25px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
 }
 
+/* TEXT */
 .login-box p {
   text-align: left;
   font-weight: 500;
+  font-size: clamp(14px, 1.5vw, 16px);
   color: #555;
   margin-bottom: 15px;
 }
 
+/* INPUTS */
 .login-box input {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 12px;
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 15px;
   border: 1px solid #ddd;
-  font-size: 14px;
+  font-size: clamp(14px, 1.6vw, 16px);
   outline: none;
 }
 
@@ -61,35 +69,37 @@ body {
   border-color: #ff8ec7;
 }
 
+/* BUTTON */
 .login-box button {
   width: 100%;
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 15px;
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: 18px;
   border: none;
   background: linear-gradient(135deg, #ff8ec7, #ffb3d9);
   color: white;
-  font-size: 15px;
+  font-size: clamp(15px, 1.8vw, 18px);
   font-weight: 500;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .login-box button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 142, 199, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 142, 199, 0.4);
 }
 
-/* Lounge links */
+/* LOUNGE LINKS */
 .page a {
   display: inline-block;
-  padding: 12px 25px;
-  margin: 10px;
+  padding: 15px 30px;
+  margin: 12px;
   background: #ffe0f0;
   color: #555;
-  border-radius: 15px;
+  border-radius: 18px;
   text-decoration: none;
   font-weight: 500;
+  font-size: clamp(14px, 1.6vw, 18px);
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
