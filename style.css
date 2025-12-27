@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Georgia, serif;
+}
+
+.page {
+  width: 85%;
+  height: 85%;
+  border: 3px solid black;
+  text-align: center;
+  padding-top: 60px;
+}
+
+.login-box {
+  width: 300px;
+  border: 2px solid black;
+  margin: auto;
+  padding: 20px;
+}
