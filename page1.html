@@ -22,6 +22,20 @@
 
 <canvas id="canvas"></canvas>
 
+<!-- Fireworks sound -->
+<audio id="firework-sound" src="firework.mp3" preload="auto"></audio>
+
 <script src="fireworks.js"></script>
+<script>
+  // Play sound on page load
+  window.addEventListener('load', () => {
+    const audio = document.getElementById('firework-sound');
+    audio.volume = 0.3; // adjust volume if needed
+    audio.play().catch(e => {
+      console.log('Autoplay blocked:', e);
+    });
+  });
+</script>
+
 </body>
 </html>
