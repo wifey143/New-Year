@@ -1,113 +1,118 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
-
+/* RESET */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* BODY */
 body {
-  margin: 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffe6f0, #fbeaff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Poppins', sans-serif;
-}
-
-/* MAIN CONTAINER */
-.page {
-  width: 95vw;
-  height: 95vh;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 30px;
-  text-align: center;
-  padding: 6vh 5vw;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  padding: 30px 15px;
+  overflow-x: hidden;
 }
 
 /* TITLE */
-.page h1 {
-  font-size: clamp(24px, 4vw, 40px);
-  color: #444;
-  margin-bottom: 6vh;
+h1 {
+  text-align: center;
+  font-size: clamp(22px, 5vw, 38px);
+  margin-bottom: 35px;
+  z-index: 2;
 }
 
-/* LOGIN CARD */
-.login-box {
-  width: min(90%, 420px);
-  background: #fff;
-  margin: 0 auto;
-  padding: 30px;
-  border-radius: 25px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+/* CARD GRID */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 900px;
+  z-index: 2;
+}
+
+/* CARD */
+.card {
+  perspective: 1000px;
+}
+
+/* CARD INNER */
+.card-inner {
+  width: 100%;
+  height: 320px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+  cursor: pointer;
+}
+
+/* FLIP */
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* CARD FACE */
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+}
+
+/* FRONT */
+.front {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.front-1 {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+}
+
+.front-2 {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+}
+
+.front-3 {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+}
+
+/* BACK */
+.back {
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* IMAGE */
+.back img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* TEXT */
-.login-box p {
-  text-align: left;
-  font-weight: 500;
-  font-size: clamp(14px, 1.5vw, 16px);
-  color: #555;
-  margin-bottom: 15px;
+.back p {
+  margin-top: 6px;
 }
 
-/* INPUTS */
-.login-box input {
-  width: 100%;
-  padding: 14px;
-  margin: 12px 0;
-  border-radius: 15px;
-  border: 1px solid #ddd;
-  font-size: clamp(14px, 1.6vw, 16px);
-  outline: none;
-}
-
-.login-box input:focus {
-  border-color: #ff8ec7;
-}
-
-/* BUTTON */
-.login-box button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 14px;
-  border-radius: 18px;
-  border: none;
-  background: linear-gradient(135deg, #ff8ec7, #ffb3d9);
-  color: white;
-  font-size: clamp(15px, 1.8vw, 18px);
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.login-box button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(255, 142, 199, 0.4);
-}
-
-/* LOUNGE LINKS */
-.page a {
-  display: inline-block;
-  padding: 15px 30px;
-  margin: 12px;
-  background: #ffe0f0;
-  color: #555;
-  border-radius: 18px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: clamp(14px, 1.6vw, 18px);
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.page a:hover {
-  background: #ffb3d9;
-  transform: translateY(-2px);
-}
-/* ❄️ SNOW CONTAINER */
+/* ❄️ SNOW EFFECT */
 .snow {
   position: fixed;
   top: 0;
@@ -115,81 +120,28 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  overflow: hidden;
-  z-index: 999;
+  z-index: 1;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 100px 150px, white, transparent),
+    radial-gradient(1.5px 1.5px at 200px 80px, white, transparent),
+    radial-gradient(1.5px 1.5px at 300px 200px, white, transparent),
+    radial-gradient(2px 2px at 400px 50px, white, transparent);
+  animation: snowFall 12s linear infinite;
 }
 
-/* ❄️ SNOWFLAKE */
-.snow span {
-  position: absolute;
-  top: -10px;
-  width: 8px;
-  height: 8px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.8;
-  animation: fall linear infinite;
+@keyframes snowFall {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
 }
 
-/* ❄️ FALL ANIMATION */
-@keyframes fall {
-  0% {
-    transform: translateY(0);
+/* MOBILE */
+@media (max-width: 480px) {
+  .card-inner {
+    height: 340px;
   }
-  100% {
-    transform: translateY(110vh);
   }
-}
-/* ❌ ERROR MESSAGE */
-#error-msg {
-  margin-top: 8px;
-  font-size: 14px;
-  color: #ff4d6d;
-  text-align: left;
-  min-height: 18px;
-}
-#intro-text {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: white;
-  z-index: 1000;
-  opacity: 0;
-  animation: fadeText 5s ease forwards;
-  pointer-events: none;
-}
-
-#intro-text h1 {
-  font-size: clamp(28px, 6vw, 52px);
-  margin: 0;
-}
-
-#intro-text h2 {
-  font-size: clamp(18px, 4vw, 32px);
-  margin-top: 10px;
-  font-weight: 400;
-}
-
-@keyframes fadeText {
-  0% {
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-.back img {
-  width: 100%;
-  max-height: 140px;
-  object-fit: contain;
-  background: rgba(255,255,255,0.08);
-  border-radius: 12px;
-    }
