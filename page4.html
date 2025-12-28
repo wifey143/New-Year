@@ -4,87 +4,93 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Envelope Surprise 💌</title>
+
 <style>
-* {
+*{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
 
-body {
-  height:100vh;
-  margin:0;
+body{
+  min-height:100vh;
   display:flex;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
-  flex-direction: column;
   font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  overflow:hidden;
   text-align:center;
   color:#fff;
+  overflow:hidden;
 
-  /* Background image */
-  background: url("bg1.jpg") no-repeat center center;
-  background-size: cover; /* fit all screen sizes */
-  background-attachment: fixed; /* optional: keeps image fixed */
+  background:url("bg1.jpg") no-repeat center center;
+  background-size:cover;
 }
 
-/* TOP TEXT ABOVE ENVELOPE */
-.top-text {
-  font-size: clamp(26px,5vw,38px);
+/* Dark overlay for readability */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.25);
+  z-index:-1;
+}
+
+/* Top text */
+.top-text{
+  font-size:clamp(26px,5vw,38px);
   font-weight:700;
   margin-bottom:20px;
 }
 
-/* TAP TEXT */
-.tap-text {
-  font-size: clamp(18px,4vw,24px);
+/* Tap text */
+.tap-text{
+  font-size:clamp(18px,4vw,24px);
   margin-top:15px;
   opacity:0.9;
 }
 
-/* ENVELOPE */
-.envelope {
-  font-size:160px; /* bigger envelope */
+/* Envelope */
+.envelope{
+  font-size:160px;
   cursor:pointer;
-  margin: 30px 0;
-  transition: transform 0.3s ease;
+  margin:25px 0;
+  transition:transform 0.3s ease;
 }
 
 .envelope:hover{
-  transform: scale(1.1);
+  transform:scale(1.1);
 }
 
-/* LETTER */
-.letter {
+/* Text above letter */
+.letter-top-text{
   display:none;
-  font-size:20px;
-  font-weight:500;
-  background: #fff;
-  color:#333;
-  padding:20px 25px;
-  border-radius:10px;
-  max-width:350px;
-  margin-top:20px;
-  box-shadow:0 15px 30px rgba(0,0,0,0.2);
-  animation:fadeIn 1.2s forwards;
+  margin-bottom:12px;
 }
 
-/* TEXT ABOVE LETTER */
-.letter-top-text {
-  display:none;
-  margin-bottom:10px;
+.letter-top-text .title{
+  font-size:clamp(28px,6vw,40px);
   font-weight:700;
 }
 
-.letter-top-text .title {
-  font-size: clamp(28px,6vw,40px);
+.letter-top-text .subtitle{
+  font-size:clamp(18px,4vw,24px);
+  opacity:0.85;
 }
 
-.letter-top-text .subtitle {
-  font-size: clamp(18px,4vw,24px);
-  opacity:0.8;
-  margin-top:5px;
+/* Letter */
+.letter{
+  display:none;
+  background:#ffffff;
+  color:#333;
+  padding:24px 26px;
+  border-radius:14px;
+  max-width:90%;
+  width:360px;
+  font-size:17px;
+  line-height:1.6;
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  animation:fadeIn 1.2s ease forwards;
 }
 
 @keyframes fadeIn{
@@ -93,6 +99,7 @@ body {
 }
 </style>
 </head>
+
 <body>
 
 <div class="top-text">
@@ -101,53 +108,46 @@ body {
 </div>
 
 <div class="envelope" id="envelope">💌</div>
-
 <div class="tap-text">Tap To Open ✨️</div>
 
-<!-- Text above letter -->
 <div class="letter-top-text" id="letterTopText">
   <div class="title">Hawww 🫢...</div>
   <div class="subtitle">You Opened My Heart Thoughts</div>
 </div>
 
 <div class="letter" id="letter">
-  💖<br><br>
-  <div class="letter" id="letter">
-  💖<br><br>
-  To Miss Harshita ✨️<br>
-  Ranchi, Jharkhand<br><br>
-  
-  Happyyy New Yearr !!!<br><br>
-  
-  I just want youu to know how grateful I am to have youu in my lifee !! Everyy moment with you is special, and I can’t wait to make countless more memories together in the yearr ahead ....<br><br>
-  
-  Arzz Kiya Haii ...<br><br>
-  
-  Tum Ho Meri Khushi Ka Sabse Pyaara Reason ...!!<br>
-  Kyukii Tumhare Saath Lagta Hai Har Din Ek Naya Season. ✨<br><br>
-  
-  Your Bandarr<br>
-  ~Maruti
-  </div>
+💖<br><br>
+
+<b>To Miss Harshita ✨️</b><br>
+Ranchi, Jharkhand<br><br>
+
+<b>Happyyy New Yearr !!!</b><br><br>
+
+I just want youu to know how grateful I am to have youu in my lifee !!  
+Everyy moment with you is special, and I can’t wait to make countless more memories together in the yearr ahead ....<br><br>
+
+<i>Arzz Kiya Haii ...</i><br><br>
+
+Tum Ho Meri Khushi Ka Sabse Pyaara Reason ..!!<br>
+Kyukii Tumhare Saath Lagta Hai Har Din Ek Naya Season. ✨<br><br>
+
+<b>Your Bandarr</b><br>
+~Maruti 🐒
 </div>
 
 <script>
 const envelope = document.getElementById("envelope");
 const letter = document.getElementById("letter");
-const topText = document.querySelector('.top-text');
-const tapText = document.querySelector('.tap-text');
+const topText = document.querySelector(".top-text");
+const tapText = document.querySelector(".tap-text");
 const letterTopText = document.getElementById("letterTopText");
 
-envelope.addEventListener("click", ()=>{
-  // hide envelope and top texts
+envelope.addEventListener("click", () => {
   envelope.style.display = "none";
   topText.style.display = "none";
   tapText.style.display = "none";
 
-  // show text above letter
   letterTopText.style.display = "block";
-
-  // show letter
   letter.style.display = "block";
 });
 </script>
