@@ -115,15 +115,25 @@ body::before{
   <div class="subtitle">You Opened My Heart Thoughts</div>
 </div>
 
-<div class="letter" id="letter">
-💖<br><br>
+<div class="letter" id="letter"> </div>
+
+<script>
+const envelope = document.getElementById("envelope");
+const letter = document.getElementById("letter");
+const topText = document.querySelector(".top-text");
+const tapText = document.querySelector(".tap-text");
+const letterTopText = document.getElementById("letterTopText");
+
+/* 💌 LETTER CONTENT */
+const letterText = `
+❤️‍🔥<br><br>
 
 <b>To Miss Harshita ✨️</b><br>
 Ranchi, Jharkhand<br><br>
 
 <b>Happyyy New Yearr !!!</b><br><br>
 
-I just want youu to know how grateful I am to have youu in my lifee !!  
+I just want youu to know how grateful I am to have youu in my lifee !!
 Everyy moment with you is special, and I can’t wait to make countless more memories together in the yearr ahead ....<br><br>
 
 <i>Arzz Kiya Haii ...</i><br><br>
@@ -133,14 +143,17 @@ Kyukii Tumhare Saath Lagta Hai Har Din Ek Naya Season. ✨<br><br>
 
 <b>Your Bandarr</b><br>
 ~Maruti 🐒
-</div>
+`;
 
-<script>
-const envelope = document.getElementById("envelope");
-const letter = document.getElementById("letter");
-const topText = document.querySelector(".top-text");
-const tapText = document.querySelector(".tap-text");
-const letterTopText = document.getElementById("letterTopText");
+/* ⌨️ TYPEWRITER EFFECT */
+let index = 0;
+function typeLetter() {
+  if (index < letterText.length) {
+    letter.innerHTML += letterText.charAt(index);
+    index++;
+    setTimeout(typeLetter, 28); // typing speed (lower = faster)
+  }
+}
 
 envelope.addEventListener("click", () => {
   envelope.style.display = "none";
@@ -149,8 +162,9 @@ envelope.addEventListener("click", () => {
 
   letterTopText.style.display = "block";
   letter.style.display = "block";
+
+  typeLetter(); // start typing 💕
 });
 </script>
-
 </body>
 </html>
