@@ -3,169 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Let’s Celebrate 🎂</title>
+<title>New Year Surprise 🎆</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
 }
 
 body{
   height:100vh;
-  background: url("bg.jpg") no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
-
+  background:url("bg.jpg") center/cover no-repeat;
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
+  font-family:'Poppins',sans-serif;
 }
 
-/* INTRO TEXT */
+/* dark overlay */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:-1;
+}
+
+/* INTRO */
 .intro{
-  position:absolute;
-  font-size:clamp(28px,5vw,42px);
+  text-align:center;
+  color:#fff;
+}
+
+.intro h1{
+  font-family:'Pacifico',cursive;
+  font-size:clamp(36px,6vw,56px);
+  margin-bottom:10px;
+}
+
+#timer{
+  font-size:28px;
   font-weight:600;
-  color:#fff;
-  animation:introFade 4s forwards;
 }
 
-@keyframes introFade{
-  0%{opacity:0;transform:scale(0.95);}
-  20%{opacity:1;transform:scale(1);}
-  80%{opacity:1;}
-  100%{opacity:0;}
-}
-
-/* PARTY CONTAINER */
-.party{
-  display:none;
-  flex-direction:column;
-  align-items:center;
-  gap:24px;
-}
-
-/* CAKE */
-.cake{
-  position:relative;
-  width:220px;
-}
-
-/* CAKE LAYERS */
-.layer{
-  height:55px;
-  background:linear-gradient(#f7c873,#e9a94a);
-  border-radius:18px;
-  box-shadow:0 8px 18px rgba(0,0,0,0.15);
-}
-
-.layer:nth-child(1){width:100%;}
-.layer:nth-child(2){width:88%;margin:0 auto;}
-.layer:nth-child(3){width:76%;margin:0 auto;}
-
-/* CREAM DRIP */
-.drip{
-  position:absolute;
-  top:-12px;
-  width:100%;
-  height:24px;
-  background:#fff;
-  border-radius:18px;
-}
-
-/* CANDLE */
-.candle{
-  position:absolute;
-  top:-55px;
-  left:50%;
-  transform:translateX(-50%);
-  width:14px;
-  height:45px;
-  background:linear-gradient(#fff,#f2f2f2);
-  border-radius:6px;
-}
-
-/* FLAME */
-.flame{
+/* FINAL TEXT */
+.final{
   display:none;
   position:absolute;
-  top:-22px;
-  left:50%;
-  transform:translateX(-50%);
-  width:14px;
-  height:22px;
-  background:radial-gradient(circle at 50% 20%,#fffacd,#ff8c00);
-  border-radius:50% 50% 50% 50%;
-  animation:flicker .5s infinite alternate;
-  cursor:pointer;
-}
-
-@keyframes flicker{
-  from{transform:translateX(-50%) scale(1);}
-  to{transform:translateX(-50%) scale(1.12);}
-}
-
-/* BUTTON */
-button{
-  padding:12px 30px;
-  font-size:16px;
-  border:none;
-  border-radius:20px;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  text-align:center;
   color:#fff;
-  cursor:pointer;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
-  transition:transform .2s;
+  font-family:'Pacifico',cursive;
+  font-size:clamp(32px,6vw,54px);
+  animation:fadeIn 2s forwards;
 }
 
-button:hover{
-  transform:scale(1.05);
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.9);}
+  to{opacity:1; transform:scale(1);}
 }
 
-/* MESSAGE */
-.msg{
-  display:none;
-  font-size:18px;
-  color:#fff;
+/* CANVAS */
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="intro">Let’s Begin The Partyy !! 🎉</div>
-
-<div class="party" id="party">
-  <div class="cake">
-    <div class="candle">
-      <div class="flame" id="flame"></div>
-    </div>
-    <div class="drip"></div>
-    <div class="layer"></div>
-    <div class="layer"></div>
-    <div class="layer"></div>
-  </div>
-
-  <button id="lightBtn">Let’s Light Up ✨</button>
-  <div class="msg" id="msg">Click The Candle Flame</div>
+<div class="intro" id="intro">
+  <h1>Let’s Beginn !!! ✨</h1>
+  <div id="timer">0:20</div>
 </div>
 
-<script>
-setTimeout(()=>{
-  document.querySelector(".intro").style.display="none";
-  document.getElementById("party").style.display="flex";
-},4000);
+<div class="final" id="finalText">
+  Happyy New Year <br>
+  Miss Harshita !!
+</div>
 
-document.getElementById("lightBtn").onclick=()=>{
-  document.getElementById("flame").style.display="block";
-  document.getElementById("lightBtn").style.display="none";
-  document.getElementById("msg").style.display="block";
+<canvas id="fireworks"></canvas>
+
+<audio id="sound" src="firework.mp3"></audio>
+
+<script>
+/* COUNTDOWN */
+let time = 20;
+const timerEl = document.getElementById("timer");
+
+const countdown = setInterval(()=>{
+  time--;
+  timerEl.textContent = "0:" + String(time).padStart(2,"0");
+
+  if(time <= 0){
+    clearInterval(countdown);
+    document.getElementById("intro").style.display="none";
+    showFinal();
+  }
+},1000);
+
+/* SHOW FINAL */
+function showFinal(){
+  document.getElementById("finalText").style.display="block";
+  document.getElementById("sound").play();
+  startFireworks();
+}
+
+/* FIREWORKS */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+let particles=[];
+
+function startFireworks(){
+  setInterval(()=>{
+    const x = Math.random()*canvas.width;
+    const y = Math.random()*canvas.height/2;
+    for(let i=0;i<60;i++){
+      particles.push({
+        x,y,
+        vx:(Math.random()-0.5)*6,
+        vy:(Math.random()-0.5)*6,
+        life:60,
+        color:`hsl(${Math.random()*360},100%,60%)`
+      });
+    }
+  },800);
+
+  animate();
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p,i)=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.life--;
+    ctx.fillStyle=p.color;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2,0,Math.PI*2);
+    ctx.fill();
+    if(p.life<=0) particles.splice(i,1);
+  });
+  requestAnimationFrame(animate);
+}
+
+window.onresize=()=>{
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
 };
 </script>
 
