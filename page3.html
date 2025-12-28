@@ -38,13 +38,15 @@ body::before{
 }
 
 .intro h1{
-  font-size:clamp(34px,6vw,52px);
-  margin-bottom:12px;
+  font-size:clamp(36px,6vw,56px);
+  margin-bottom:10px;
 }
 
+/* BIG TIMER */
 #timer{
-  font-size:30px;
-  font-weight:600;
+  font-size:clamp(64px,10vw,120px);
+  font-weight:700;
+  letter-spacing:2px;
 }
 
 /* FINAL TEXT */
@@ -53,7 +55,7 @@ body::before{
   position:absolute;
   text-align:center;
   color:#fff;
-  font-size:clamp(32px,6vw,54px);
+  font-size:clamp(34px,6vw,56px);
   font-weight:600;
   animation:fadeIn 2s forwards;
 }
@@ -61,6 +63,22 @@ body::before{
 @keyframes fadeIn{
   from{opacity:0; transform:scale(0.9);}
   to{opacity:1; transform:scale(1);}
+}
+
+/* NEXT BUTTON */
+.next-btn{
+  display:none;
+  margin-top:25px;
+  padding:12px 34px;
+  font-size:18px;
+  font-weight:600;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  background:linear-gradient(135deg,#ff6a88,#ff99ac);
+  color:#fff;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  animation:fadeIn 1.5s forwards;
 }
 
 /* FIREWORK CANVAS */
@@ -82,6 +100,8 @@ canvas{
 <div class="final" id="finalText">
   Happyy New Year <br>
   Miss Harshita !!
+  <br>
+  <button class="next-btn" id="nextBtn">Next</button>
 </div>
 
 <canvas id="fireworks"></canvas>
@@ -106,10 +126,27 @@ const countdown = setInterval(()=>{
 
 /* SHOW FINAL */
 function showFinal(){
-  document.getElementById("finalText").style.display="block";
-  document.getElementById("sound").play();
+  const finalText = document.getElementById("finalText");
+  finalText.style.display = "block";
+
+  const sound = document.getElementById("sound");
+  sound.play();
+
   startFireworks();
+
+  // show NEXT button after 3 seconds
+  setTimeout(()=>{
+    document.getElementById("nextBtn").style.display = "inline-block";
+  },3000);
 }
+
+/* NEXT BUTTON CLICK */
+document.getElementById("nextBtn").onclick = ()=>{
+  const sound = document.getElementById("sound");
+  sound.pause();
+  sound.currentTime = 0;
+  window.location.href = "page4.html";
+};
 
 /* FIREWORKS */
 const canvas = document.getElementById("fireworks");
