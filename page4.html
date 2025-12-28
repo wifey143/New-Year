@@ -40,9 +40,9 @@ body {
 
 /* ENVELOPE BUTTON */
 .envelope {
-  font-size:100px;
+  font-size:160px; /* bigger envelope */
   cursor:pointer;
-  margin: 20px 0;
+  margin: 30px 0;
   transition: transform 0.3s ease;
 }
 
@@ -59,10 +59,23 @@ body {
   color:#333;
   padding:20px 25px;
   border-radius:10px;
-  max-width:300px;
+  max-width:350px;
   margin-top:20px;
   box-shadow:0 15px 30px rgba(0,0,0,0.2);
   animation:fadeIn 1.2s forwards;
+}
+
+/* ABOVE LETTER TEXT */
+.letter-title {
+  font-size: clamp(28px,6vw,40px);
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.letter-subtitle {
+  font-size: clamp(18px,4vw,24px);
+  opacity:0.8;
+  margin-bottom:15px;
 }
 
 @keyframes fadeIn{
@@ -74,7 +87,7 @@ body {
 <body>
 
 <div class="top-text">
-  Something Deep In My Heart <br>
+  Something Is Deep In My Heart <br>
   You Want To See 👀 !!
 </div>
 
@@ -83,6 +96,8 @@ body {
 <div class="tap-text">Tap To Open ✨️</div>
 
 <div class="letter" id="letter">
+  <div class="letter-title">Hawww ...</div>
+  <div class="letter-subtitle">You Opened My Heart Thoughts</div>
   💖<br><br>
   (Your special message appears here!)
 </div>
@@ -94,7 +109,7 @@ const topText = document.querySelector('.top-text');
 const tapText = document.querySelector('.tap-text');
 
 envelope.addEventListener("click", ()=>{
-  // hide everything except letter
+  // hide envelope and texts
   envelope.style.display = "none";
   topText.style.display = "none";
   tapText.style.display = "none";
