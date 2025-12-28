@@ -21,33 +21,34 @@
   h1 {
     text-align: center;
     font-size: clamp(22px, 5vw, 38px);
-    margin-bottom: 30px;
+    margin-bottom: 35px;
   }
 
-  /* VERTICAL STACK */
+  /* Cards container */
   .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
     width: 100%;
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
+    max-width: 900px;
   }
 
+  /* Card flip setup */
   .card {
-    perspective: 1200px;
+    perspective: 1000px;
   }
 
   .card-inner {
     width: 100%;
-    height: 220px;
+    height: 260px;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.8s ease;
+    transition: transform 0.8s;
     cursor: pointer;
   }
 
-  /* FLIP ONLY WHEN .flipped CLASS IS ADDED */
-  .card.flipped .card-inner {
+  .card:hover .card-inner,
+  .card:active .card-inner {
     transform: rotateY(180deg);
   }
 
@@ -65,12 +66,12 @@
     font-weight: 600;
   }
 
-  /* FRONT COLORS */
+  /* Front sides */
   .front-1 { background: linear-gradient(135deg, #ff512f, #dd2476); }
   .front-2 { background: linear-gradient(135deg, #36d1dc, #5b86e5); }
   .front-3 { background: linear-gradient(135deg, #f7971e, #ffd200); }
 
-  /* BACK */
+  /* Back sides */
   .back {
     background: rgba(255,255,255,0.15);
     transform: rotateY(180deg);
@@ -87,10 +88,10 @@
 <div class="cards">
 
   <!-- CARD 1 -->
-  <div class="card" onclick="this.classList.toggle('flipped')">
+  <div class="card">
     <div class="card-inner">
       <div class="card-face front-1">
-        1st Moment !!
+        💖 Moment One
       </div>
       <div class="card-face back">
         This was one of the happiest memories of the year ✨
@@ -99,10 +100,10 @@
   </div>
 
   <!-- CARD 2 -->
-  <div class="card" onclick="this.classList.toggle('flipped')">
+  <div class="card">
     <div class="card-inner">
       <div class="card-face front-2">
-        2nd Moment !!
+        🌟 Moment Two
       </div>
       <div class="card-face back">
         A special day that will always stay close to my heart 💫
@@ -111,10 +112,10 @@
   </div>
 
   <!-- CARD 3 -->
-  <div class="card" onclick="this.classList.toggle('flipped')">
+  <div class="card">
     <div class="card-inner">
       <div class="card-face front-3">
-        3rd Moment !!
+        🎉 Moment Three
       </div>
       <div class="card-face back">
         Pure joy, laughter, and unforgettable vibes 😄
