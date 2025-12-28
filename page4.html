@@ -26,7 +26,6 @@ body{
   background-size:cover;
 }
 
-/* dark overlay */
 body::before{
   content:"";
   position:fixed;
@@ -57,9 +56,7 @@ body::before{
   transition:transform 0.3s ease;
   z-index:2;
 }
-.envelope:hover{
-  transform:scale(1.1);
-}
+.envelope:hover{ transform:scale(1.1); }
 
 /* letter heading */
 .letter-top-text{
@@ -76,7 +73,7 @@ body::before{
   opacity:0.85;
 }
 
-/* letter box */
+/* letter */
 .letter{
   display:none;
   font-size:18px;
@@ -94,6 +91,25 @@ body::before{
   z-index:2;
 }
 
+/* Next button */
+.next-btn{
+  display:none;
+  margin-top:18px;
+  padding:12px 28px;
+  font-size:18px;
+  font-weight:600;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  background:linear-gradient(135deg,#ff6ec4,#7873f5);
+  color:#fff;
+  box-shadow:0 10px 25px rgba(0,0,0,0.35);
+  animation:fadeIn 1s ease forwards;
+}
+.next-btn:hover{
+  transform:scale(1.05);
+}
+
 /* scrollbar */
 .letter::-webkit-scrollbar{ width:6px; }
 .letter::-webkit-scrollbar-thumb{
@@ -101,7 +117,7 @@ body::before{
   border-radius:10px;
 }
 
-/* fade animation */
+/* fade */
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(20px);}
   to{opacity:1; transform:translateY(0);}
@@ -112,7 +128,6 @@ body::before{
   position:fixed;
   inset:0;
   pointer-events:none;
-  overflow:hidden;
   z-index:1;
 }
 .snowflake{
@@ -120,7 +135,7 @@ body::before{
   top:-10px;
   color:white;
   opacity:0.8;
-  animation: fall linear infinite;
+  animation:fall linear infinite;
 }
 @keyframes fall{
   to{ transform:translateY(110vh); }
@@ -145,17 +160,18 @@ body::before{
 
 <div class="letter" id="letter"></div>
 
-<!-- ❄️ Snow container -->
+<button class="next-btn" id="nextBtn">Next ✨️</button>
+
 <div id="snow-container"></div>
 
 <script>
 const envelope = document.getElementById("envelope");
 const letter = document.getElementById("letter");
+const nextBtn = document.getElementById("nextBtn");
 const topText = document.querySelector(".top-text");
 const tapText = document.querySelector(".tap-text");
 const letterTopText = document.getElementById("letterTopText");
 
-/* 💌 letter content */
 const letterContent = `
 ❤️‍🔥<br><br>
 
@@ -179,7 +195,10 @@ Kyukii Tumhare Saath Lagta Hai Har Din Ek Naya Season. ✨<br><br>
 
 let i = 0;
 function typeHTML(){
-  if(i >= letterContent.length) return;
+  if(i >= letterContent.length){
+    nextBtn.style.display = "block"; // ⭐ SHOW BUTTON
+    return;
+  }
 
   if(letterContent[i] === "<"){
     const tagEnd = letterContent.indexOf(">", i);
@@ -189,41 +208,42 @@ function typeHTML(){
     letter.innerHTML += letterContent[i];
     i++;
   }
+
   letter.scrollTop = letter.scrollHeight;
   setTimeout(typeHTML, 28);
 }
 
-envelope.addEventListener("click", () => {
-  envelope.style.display = "none";
-  topText.style.display = "none";
-  tapText.style.display = "none";
+envelope.addEventListener("click", ()=>{
+  envelope.style.display="none";
+  topText.style.display="none";
+  tapText.style.display="none";
 
-  letterTopText.style.display = "block";
-  letter.style.display = "block";
-  letter.innerHTML = "";
-  i = 0;
+  letterTopText.style.display="block";
+  letter.style.display="block";
+  nextBtn.style.display="none";
+
+  letter.innerHTML="";
+  i=0;
   typeHTML();
 });
 
-/* ❄️ snowfall */
-const snowContainer = document.getElementById("snow-container");
+nextBtn.addEventListener("click", ()=>{
+  window.location.href = "page2.html"; // change if needed
+});
 
+/* snow */
+const snowContainer=document.getElementById("snow-container");
 function createSnowflake(){
-  const snowflake = document.createElement("div");
-  snowflake.className = "snowflake";
-  snowflake.innerHTML = ["❄","❅","❆"][Math.floor(Math.random()*3)];
-
-  const size = Math.random()*14 + 8;
-  snowflake.style.fontSize = size + "px";
-  snowflake.style.left = Math.random()*window.innerWidth + "px";
-  snowflake.style.opacity = Math.random();
-  snowflake.style.animationDuration = Math.random()*5 + 5 + "s";
-
-  snowContainer.appendChild(snowflake);
-  setTimeout(()=>snowflake.remove(),10000);
+  const s=document.createElement("div");
+  s.className="snowflake";
+  s.innerHTML=["❄","❅","❆"][Math.floor(Math.random()*3)];
+  s.style.fontSize=Math.random()*14+8+"px";
+  s.style.left=Math.random()*window.innerWidth+"px";
+  s.style.animationDuration=Math.random()*5+5+"s";
+  snowContainer.appendChild(s);
+  setTimeout(()=>s.remove(),10000);
 }
-
-setInterval(createSnowflake, 200);
+setInterval(createSnowflake,200);
 </script>
 
 </body>
