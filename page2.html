@@ -1,154 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="style.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Best Moments 2025</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Moments 2025</title>
 
-<style>
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px 15px;
-  }
-
-  h1 {
-    text-align: center;
-    font-size: clamp(22px, 5vw, 38px);
-    margin-bottom: 35px;
-  }
-
-  /* NICE GRID LAYOUT */
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-    width: 100%;
-    max-width: 900px;
-  }
-
-  .card {
-    perspective: 1000px;
-  }
-
-  .card-inner {
-    width: 100%;
-    height: 300px;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.8s ease;
-    cursor: pointer;
-  }
-
-  .card.flipped .card-inner {
-    transform: rotateY(180deg);
-  }
-
-  .card-face {
-    position: absolute;
-    inset: 0;
-    border-radius: 18px;
-    backface-visibility: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 18px;
-  }
-
-  /* FRONT COLORS */
-  .front-1 { background: linear-gradient(135deg, #ff512f, #dd2476); }
-  .front-2 { background: linear-gradient(135deg, #36d1dc, #5b86e5); }
-  .front-3 { background: linear-gradient(135deg, #f7971e, #ffd200); }
-
-  .front {
-    font-size: 22px;
-    font-weight: 600;
-  }
-
-  /* BACK SIDE */
-  .back {
-    background: rgba(255, 255, 255, 0.15);
-    transform: rotateY(180deg);
-    flex-direction: column;
-    gap: 12px;
-    font-size: 15px;
-    line-height: 1.4;
-  }
-
-  .back img {
-    width: 100%;
-    max-height: 140px;
-    object-fit: cover;
-    border-radius: 12px;
-  }
-</style>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<h1>Three Best Moments In This Year 2025 ＼(^_^)／</h1>
+  <!-- SNOW LAYER -->
+  <div class="snow"></div>
 
-<div class="cards">
+  <!-- PAGE CONTENT -->
+  <h1>Three Best Moments In This Year 2025 ＼(^_^)／</h1>
 
-  <!-- CARD 1 -->
-  <div class="card" onclick="this.classList.toggle('flipped')">
-    <div class="card-inner">
-      <div class="card-face front front-1">
-        1st Moment !!
-      </div>
-      <div class="card-face back">
-        <img src="moment1.jpg" alt="100 days">
-        <div>
-          <b>Hehe ..</b><br>
-          Its Our 100 Days To Our Relationship ＼(^-^)／<br>
-          We Both Had A Nice Journey Of 100 Days
+  <div class="cards">
+
+    <!-- CARD 1 -->
+    <div class="card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face front front-1">
+          1st Moment !!
+        </div>
+        <div class="card-face back">
+          <img src="images/moment1.jpg" alt="100 days">
+          <p>
+            <b>Hehe ..</b><br>
+            Its Our 100 Days To Our Relationship ＼(^-^)／<br>
+            We Both Had A Nice Journey Of 100 Days
+          </p>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- CARD 2 -->
-  <div class="card" onclick="this.classList.toggle('flipped')">
-    <div class="card-inner">
-      <div class="card-face front front-2">
-        2nd Moment !!
-      </div>
-      <div class="card-face back">
-        <img src="moment2.jpg" alt="Birthday">
-        <div>
-          <b>Yeahh Ofc ..!!</b><br>
-          Its Your Birthday Miss ✨️<br>
-          I was very Excited About It After The Month Of August ..
+    <!-- CARD 2 -->
+    <div class="card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face front front-2">
+          2nd Moment !!
+        </div>
+        <div class="card-face back">
+          <img src="images/moment2.jpg" alt="Birthday">
+          <p>
+            <b>Yeahh Ofc ..!!</b><br>
+            Its Your Birthday Miss ✨️<br>
+            I was very Excited About It After The Month Of August ..
+          </p>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- CARD 3 -->
-  <div class="card" onclick="this.classList.toggle('flipped')">
-    <div class="card-inner">
-      <div class="card-face front front-3">
-        3rd Moment !!
-      </div>
-      <div class="card-face back">
-        <img src="moment3.jpg" alt="First photo">
-        <div>
-          <b>Youu Guess It Rightt !!</b><br>
-          It's The First Time We Had A Photo Together ...
+    <!-- CARD 3 -->
+    <div class="card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face front front-3">
+          3rd Moment !!
+        </div>
+        <div class="card-face back">
+          <img src="images/moment3.jpg" alt="First photo">
+          <p>
+            <b>Youu Guess It Rightt !!</b><br>
+            It's The First Time We Had A Photo Together ...
+          </p>
         </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
 
 </body>
 </html>
