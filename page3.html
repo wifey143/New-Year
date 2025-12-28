@@ -42,9 +42,9 @@ body::before{
   margin-bottom:10px;
 }
 
-/* BIG TIMER */
+/* TIMER (previous better size) */
 #timer{
-  font-size:clamp(64px,10vw,120px);
+  font-size:clamp(42px,7vw,72px);
   font-weight:700;
   letter-spacing:2px;
 }
@@ -106,7 +106,7 @@ canvas{
 
 <canvas id="fireworks"></canvas>
 
-<audio id="sound" src="firework.mp3"></audio>
+<audio id="sound" src="firework.mp3" loop></audio>
 
 <script>
 /* COUNTDOWN */
@@ -130,7 +130,7 @@ function showFinal(){
   finalText.style.display = "block";
 
   const sound = document.getElementById("sound");
-  sound.play();
+  sound.play(); // 🔁 starts looping
 
   startFireworks();
 
@@ -144,7 +144,7 @@ function showFinal(){
 document.getElementById("nextBtn").onclick = ()=>{
   const sound = document.getElementById("sound");
   sound.pause();
-  sound.currentTime = 0;
+  sound.currentTime = 0; // 🔇 stop sound
   window.location.href = "page4.html";
 };
 
