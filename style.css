@@ -38,7 +38,7 @@ h1 {
 
 /* CARD */
 .card {
-  perspective: 1000px;
+  perspective: 1200px;
 }
 
 /* CARD INNER */
@@ -68,35 +68,21 @@ h1 {
   justify-content: center;
   padding: 16px;
   text-align: center;
-}
-
-/* FRONT */
-.front {
-  font-size: 22px;
+  color: #fff;
   font-weight: 600;
+  font-size: 18px;
+  transition: background 0.5s;
 }
 
-.front-1 {
-  background: linear-gradient(135deg, #ff512f, #dd2476);
-}
+/* FRONT COLORS (VIBRANT) */
+.front-1 { background: linear-gradient(135deg, #ff6a00, #ee0979); }
+.front-2 { background: linear-gradient(135deg, #1d976c, #93f9b9); }
+.front-3 { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
 
-.front-2 {
-  background: linear-gradient(135deg, #36d1dc, #5b86e5);
-}
-
-.front-3 {
-  background: linear-gradient(135deg, #f7971e, #ffd200);
-}
-
-/* BACK */
-.back {
-  background: rgba(255, 255, 255, 0.15);
-  transform: rotateY(180deg);
-  justify-content: flex-start;
-  gap: 10px;
-  font-size: 14px;
-  line-height: 1.45;
-}
+/* BACK COLORS (VIBRANT) */
+.back-1 { background: linear-gradient(135deg, #ff85a2, #ff4d6d); }
+.back-2 { background: linear-gradient(135deg, #64f38c, #32d0b1); }
+.back-3 { background: linear-gradient(135deg, #ffb347, #ffcc33); }
 
 /* IMAGE */
 .back img {
@@ -107,12 +93,33 @@ h1 {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* TEXT */
+/* TEXT BELOW IMAGE */
 .back p {
   margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
-/* ❄️ SNOW EFFECT */
+/* NEXT BUTTON */
+#next-btn {
+  margin-top: 35px;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#next-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+/* SNOW */
 .snow {
   position: fixed;
   top: 0;
@@ -131,17 +138,12 @@ h1 {
 }
 
 @keyframes snowFall {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(100%);
-  }
+  from { transform: translateY(-100%); }
+  to { transform: translateY(100%); }
 }
 
 /* MOBILE */
 @media (max-width: 480px) {
-  .card-inner {
-    height: 340px;
-  }
-  }
+  .card-inner { height: 340px; }
+  .back img { height: 140px; }
+}
