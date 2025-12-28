@@ -78,21 +78,34 @@ body::before{
   opacity:0.85;
 }
 
-/* Letter */
-.letter{
+.letter {
   display:none;
-  background:#ffffff;
-  color:#333;
-  padding:24px 26px;
-  border-radius:14px;
-  max-width:90%;
-  width:360px;
-  font-size:17px;
-  line-height:1.6;
-  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  font-size:18px;
+  font-weight:500;
+  background:#1f1f1f;
+  color:#f1f1f1;
+
+  padding:22px 25px;
+  border-radius:16px;
+
+  width: min(92%, 380px);
+  max-height:60vh;
+  overflow-y:auto;
+
+  margin-top:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.35);
+
   animation:fadeIn 1.2s ease forwards;
 }
 
+/* scrollbar (mobile friendly) */
+.letter::-webkit-scrollbar{
+  width:6px;
+}
+.letter::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,0.3);
+  border-radius:10px;
+}
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(20px);}
   to{opacity:1; transform:translateY(0);}
@@ -146,11 +159,11 @@ Kyukii Tumhare Saath Lagta Hai Har Din Ek Naya Season. ✨<br><br>
 `;
 
 let i = 0;
+const letterHTML = letter.dataset.text;
 
 function typeHTML() {
   if (i >= letterHTML.length) return;
 
-  // If HTML tag, insert whole tag instantly
   if (letterHTML[i] === "<") {
     const tagEnd = letterHTML.indexOf(">", i);
     letter.innerHTML += letterHTML.slice(i, tagEnd + 1);
@@ -160,9 +173,10 @@ function typeHTML() {
     i++;
   }
 
-  setTimeout(typeHTML, 28); // typing speed
-}
+  letter.scrollTop = letter.scrollHeight; // 👈 THIS LINE IS IMPORTANT
 
+  setTimeout(typeHTML, 28);
+  }
 envelope.addEventListener("click", () => {
   envelope.style.display = "none";
   topText.style.display = "none";
