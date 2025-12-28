@@ -16,8 +16,7 @@
 
     canvas {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       z-index: 1;
     }
 
@@ -31,26 +30,27 @@
       color: white;
       z-index: 5;
       opacity: 0;
-      animation: fadeText 5s ease forwards;
+      animation: fadeInOut 6.7s ease forwards;
       pointer-events: none;
     }
 
     #intro-text h1 {
-      font-size: clamp(30px, 6vw, 60px);
+      font-size: clamp(32px, 6vw, 64px);
       margin: 0;
     }
 
     #intro-text h2 {
-      font-size: clamp(18px, 4vw, 32px);
-      margin-top: 12px;
+      font-size: clamp(18px, 4vw, 34px);
+      margin-top: 14px;
       font-weight: 400;
     }
 
-    @keyframes fadeText {
-      0%   { opacity: 0; }
-      15%  { opacity: 1; }
-      70%  { opacity: 1; }
-      100% { opacity: 0; }
+    /* 6.7 seconds TOTAL */
+    @keyframes fadeInOut {
+      0%   { opacity: 0; }   /* start */
+      20%  { opacity: 1; }   /* fade in */
+      70%  { opacity: 1; }   /* stay */
+      100% { opacity: 0; }   /* fade out */
     }
   </style>
 </head>
@@ -66,24 +66,23 @@
 <!-- FIREWORK CANVAS -->
 <canvas id="canvas"></canvas>
 
-<!-- SOUND -->
+<!-- FIREWORK SOUND -->
 <audio id="firework-sound" src="firework.mp3" preload="auto"></audio>
 
 <script src="fireworks.js"></script>
 
 <script>
-  // Play sound once page loads
+  // Play fireworks sound
   window.addEventListener("load", () => {
     const audio = document.getElementById("firework-sound");
     audio.volume = 0.5;
     audio.play().catch(() => {});
   });
 
-  // Remove text after fade animation
+  // Redirect after 6.7 seconds
   setTimeout(() => {
-    const text = document.getElementById("intro-text");
-    if (text) text.remove();
-  }, 5200);
+    window.location.href = "page2.html";
+  }, 6700);
 </script>
 
 </body>
