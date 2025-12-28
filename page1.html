@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fireworks</title>
+
   <style>
     html, body {
       margin: 0;
@@ -14,30 +15,75 @@
     }
 
     canvas {
-      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    /* CENTER TEXT */
+    #intro-text {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      z-index: 5;
+      opacity: 0;
+      animation: fadeText 5s ease forwards;
+      pointer-events: none;
+    }
+
+    #intro-text h1 {
+      font-size: clamp(30px, 6vw, 60px);
+      margin: 0;
+    }
+
+    #intro-text h2 {
+      font-size: clamp(18px, 4vw, 32px);
+      margin-top: 12px;
+      font-weight: 400;
+    }
+
+    @keyframes fadeText {
+      0%   { opacity: 0; }
+      15%  { opacity: 1; }
+      70%  { opacity: 1; }
+      100% { opacity: 0; }
     }
   </style>
 </head>
+
 <body>
+
+<!-- CENTER MESSAGE -->
 <div id="intro-text">
   <h1>I'm Glad</h1>
   <h2>Yeahh You Did It.. !!</h2>
 </div>
+
+<!-- FIREWORK CANVAS -->
 <canvas id="canvas"></canvas>
 
-<!-- Fireworks sound -->
+<!-- SOUND -->
 <audio id="firework-sound" src="firework.mp3" preload="auto"></audio>
 
 <script src="fireworks.js"></script>
+
 <script>
-  // Play sound on page load
-  window.addEventListener('load', () => {
-    const audio = document.getElementById('firework-sound');
-    audio.volume = 0.3; // adjust volume if needed
-    audio.play().catch(e => {
-      console.log('Autoplay blocked:', e);
-    });
+  // Play sound once page loads
+  window.addEventListener("load", () => {
+    const audio = document.getElementById("firework-sound");
+    audio.volume = 0.5;
+    audio.play().catch(() => {});
   });
+
+  // Remove text after fade animation
+  setTimeout(() => {
+    const text = document.getElementById("intro-text");
+    if (text) text.remove();
+  }, 5200);
 </script>
 
 </body>
