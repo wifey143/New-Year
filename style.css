@@ -256,22 +256,3 @@ h1 {
   .card-inner{height:340px;}
   .back img{height:140px;}
   }
-.letter {
-  display:none;
-  font-size:18px;
-  font-weight:500;
-  background: #ffffff;
-  color:#333;
-  padding:22px 25px;
-  border-radius:14px;
-  max-width:90%;
-  width:360px;
-  margin-top:20px;
-
-  box-shadow:0 20px 40px rgba(0,0,0,0.25);
-
-  z-index:10;
-  position: relative;
-
-  animation: fadeIn 1.2s ease forwards;
-}
