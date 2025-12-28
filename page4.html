@@ -24,7 +24,7 @@ body {
   color:#fff;
 }
 
-/* TOP TEXT */
+/* TOP TEXT ABOVE ENVELOPE */
 .top-text {
   font-size: clamp(26px,5vw,38px);
   font-weight:700;
@@ -38,7 +38,7 @@ body {
   opacity:0.9;
 }
 
-/* ENVELOPE BUTTON */
+/* ENVELOPE */
 .envelope {
   font-size:160px; /* bigger envelope */
   cursor:pointer;
@@ -65,17 +65,21 @@ body {
   animation:fadeIn 1.2s forwards;
 }
 
-/* ABOVE LETTER TEXT */
-.letter-title {
-  font-size: clamp(28px,6vw,40px);
-  font-weight:700;
+/* TEXT ABOVE LETTER */
+.letter-top-text {
+  display:none;
   margin-bottom:10px;
+  font-weight:700;
 }
 
-.letter-subtitle {
+.letter-top-text .title {
+  font-size: clamp(28px,6vw,40px);
+}
+
+.letter-top-text .subtitle {
   font-size: clamp(18px,4vw,24px);
   opacity:0.8;
-  margin-bottom:15px;
+  margin-top:5px;
 }
 
 @keyframes fadeIn{
@@ -87,7 +91,7 @@ body {
 <body>
 
 <div class="top-text">
-  Something Is Deep In My Heart <br>
+  Something Deep In My Heart <br>
   You Want To See 👀 !!
 </div>
 
@@ -95,9 +99,13 @@ body {
 
 <div class="tap-text">Tap To Open ✨️</div>
 
+<!-- Text above letter -->
+<div class="letter-top-text" id="letterTopText">
+  <div class="title">Hawww 🫢...</div>
+  <div class="subtitle">You Opened My Heart Thoughts</div>
+</div>
+
 <div class="letter" id="letter">
-  <div class="letter-title">Hawww ...</div>
-  <div class="letter-subtitle">You Opened My Heart Thoughts</div>
   💖<br><br>
   (Your special message appears here!)
 </div>
@@ -107,12 +115,16 @@ const envelope = document.getElementById("envelope");
 const letter = document.getElementById("letter");
 const topText = document.querySelector('.top-text');
 const tapText = document.querySelector('.tap-text');
+const letterTopText = document.getElementById("letterTopText");
 
 envelope.addEventListener("click", ()=>{
-  // hide envelope and texts
+  // hide envelope and top texts
   envelope.style.display = "none";
   topText.style.display = "none";
   tapText.style.display = "none";
+
+  // show text above letter
+  letterTopText.style.display = "block";
 
   // show letter
   letter.style.display = "block";
