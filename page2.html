@@ -24,7 +24,7 @@
     margin-bottom: 35px;
   }
 
-  /* Cards container */
+  /* GRID LAYOUT (ORIGINAL NICE LOOK) */
   .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -33,7 +33,6 @@
     max-width: 900px;
   }
 
-  /* Card flip setup */
   .card {
     perspective: 1000px;
   }
@@ -43,12 +42,12 @@
     height: 260px;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.8s;
+    transition: transform 0.8s ease;
     cursor: pointer;
   }
 
-  .card:hover .card-inner,
-  .card:active .card-inner {
+  /* FLIP ONLY WHEN CLICKED */
+  .card.flipped .card-inner {
     transform: rotateY(180deg);
   }
 
@@ -66,12 +65,12 @@
     font-weight: 600;
   }
 
-  /* Front sides */
+  /* FRONT COLORS */
   .front-1 { background: linear-gradient(135deg, #ff512f, #dd2476); }
   .front-2 { background: linear-gradient(135deg, #36d1dc, #5b86e5); }
   .front-3 { background: linear-gradient(135deg, #f7971e, #ffd200); }
 
-  /* Back sides */
+  /* BACK */
   .back {
     background: rgba(255,255,255,0.15);
     transform: rotateY(180deg);
@@ -88,7 +87,7 @@
 <div class="cards">
 
   <!-- CARD 1 -->
-  <div class="card">
+  <div class="card" onclick="this.classList.toggle('flipped')">
     <div class="card-inner">
       <div class="card-face front-1">
         💖 Moment One
@@ -100,7 +99,7 @@
   </div>
 
   <!-- CARD 2 -->
-  <div class="card">
+  <div class="card" onclick="this.classList.toggle('flipped')">
     <div class="card-inner">
       <div class="card-face front-2">
         🌟 Moment Two
@@ -112,7 +111,7 @@
   </div>
 
   <!-- CARD 3 -->
-  <div class="card">
+  <div class="card" onclick="this.classList.toggle('flipped')">
     <div class="card-inner">
       <div class="card-face front-3">
         🎉 Moment Three
