@@ -13,15 +13,20 @@
 
 body {
   height:100vh;
-  background: linear-gradient(135deg,#fbc2eb,#a6c1ee);
+  margin:0;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   flex-direction: column;
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   overflow:hidden;
   text-align:center;
   color:#fff;
+
+  /* Background image */
+  background: url("bg1.jpg") no-repeat center center;
+  background-size: cover; /* fit all screen sizes */
+  background-attachment: fixed; /* optional: keeps image fixed */
 }
 
 /* TOP TEXT ABOVE ENVELOPE */
