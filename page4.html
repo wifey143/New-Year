@@ -124,8 +124,8 @@ const topText = document.querySelector(".top-text");
 const tapText = document.querySelector(".tap-text");
 const letterTopText = document.getElementById("letterTopText");
 
-/* 💌 LETTER CONTENT */
-const letterText = `
+/* 💌 LETTER CONTENT (HTML allowed) */
+const letterHTML = `
 ❤️‍🔥<br><br>
 
 <b>To Miss Harshita ✨️</b><br>
@@ -145,14 +145,22 @@ Kyukii Tumhare Saath Lagta Hai Har Din Ek Naya Season. ✨<br><br>
 ~Maruti 🐒
 `;
 
-/* ⌨️ TYPEWRITER EFFECT */
-let index = 0;
-function typeLetter() {
-  if (index < letterText.length) {
-    letter.innerHTML += letterText.charAt(index);
-    index++;
-    setTimeout(typeLetter, 28); // typing speed (lower = faster)
+let i = 0;
+
+function typeHTML() {
+  if (i >= letterHTML.length) return;
+
+  // If HTML tag, insert whole tag instantly
+  if (letterHTML[i] === "<") {
+    const tagEnd = letterHTML.indexOf(">", i);
+    letter.innerHTML += letterHTML.slice(i, tagEnd + 1);
+    i = tagEnd + 1;
+  } else {
+    letter.innerHTML += letterHTML[i];
+    i++;
   }
+
+  setTimeout(typeHTML, 28); // typing speed
 }
 
 envelope.addEventListener("click", () => {
@@ -162,8 +170,9 @@ envelope.addEventListener("click", () => {
 
   letterTopText.style.display = "block";
   letter.style.display = "block";
+  letter.innerHTML = "";
 
-  typeLetter(); // start typing 💕
+  typeHTML(); // ❤️ start smart typing
 });
 </script>
 </body>
